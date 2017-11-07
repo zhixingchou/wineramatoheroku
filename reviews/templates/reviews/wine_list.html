@@ -1,0 +1,16 @@
+<h2>Wine list</h2>
+{% if wine_list %}
+<div>
+    {% for wine in wine_list %}
+    <div>
+        <h4><a href="{% url 'reviews:wine_detail' wine.id %}" >
+        {{ wine.name }}
+        </a></h4>
+        <h5>{{ wine.review_set.count }}</h5>    <!-- ForeignKey relationship 获取评论的数量 -->
+        <h5>{{ wine.average_rating | floatformat }} average rating</h5>    <!-- 保留1位小数，可为负数，几种形式 -->
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No wines are available.</p>
+{% endif %}
