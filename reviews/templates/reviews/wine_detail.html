@@ -1,7 +1,12 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}
 <h2>{{ wine.name }}</h2>
 <h5>{{ wine.review_set.count }} reviews ({{ wine.average_rating | floatformat }} average rating)</h5>
+{% endblock %}
 
 
+{% block content %}
 <h3>Recent reviews</h3>
 
 {% if wine.review_set.all %}
@@ -19,3 +24,13 @@
 {% else %}
 <p>No reviews for this wine yet</p>
 {% endif %}
+
+<h3>Add your review</h3>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'reviews:add_review' wine.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}     <!-- as_p() 渲染表单为一系列的<p> 标签，每个<p> 标签包含一个字段；<p> 一个段落 -->
+    <input type="submit" value="Add" />
+</form>
+{% endblock %}

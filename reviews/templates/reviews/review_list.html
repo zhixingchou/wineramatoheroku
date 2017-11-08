@@ -1,5 +1,11 @@
-<h2>Latest reviews</h2> <!-- 标题 -->
+{% extends 'reviews/base.html' %}
 
+{% block title %}
+<h2>Latest reviews</h2> <!-- 标题 -->
+{% endblock %}
+
+
+{% block content %}
 {% if latest_review_list %} <!-- 函数返回该变量 -->
 <div>
     {% for review in latest_review_list %}  <!-- django 模板 for 循环 -->
@@ -15,3 +21,4 @@
 {% else %}      <!-- django if else endif 模板-->
 <p>No reviews are available.</p>
  {% endif %}
+{% endblock %}
