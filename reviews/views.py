@@ -53,6 +53,6 @@ def add_review(request, wine_id):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('reviews:wine_detail', args=(wine.id,)))
+        return HttpResponseRedirect(reverse('reviews:wine_detail', args=(wine.id,)))    # 重定向
 
     return render(request, 'reviews/wine_detail.html', {'wine': wine, 'form': form})

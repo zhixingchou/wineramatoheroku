@@ -1,4 +1,5 @@
 {% extends 'reviews/base.html' %}
+{% load bootstrap3 %}       <!--  load the bootstrap3 library and use the bootstrap_* tags: -->
 
 {% block title %}
 <h2>{{ wine.name }}</h2>
@@ -28,9 +29,20 @@
 <h3>Add your review</h3>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'reviews:add_review' wine.id %}" method="post">
+{#<form action="{% url 'reviews:add_review' wine.id %}" method="post">#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}     <!-- as_p() 渲染表单为一系列的<p> 标签，每个<p> 标签包含一个字段；<p> 一个段落 -->#}
+{#    <input type="submit" value="Add" />#}
+{#</form>#}
+
+<form action="{% url 'reviews:add_review' wine.id %}" method="post" class="form">
     {% csrf_token %}
-    {{ form.as_p }}     <!-- as_p() 渲染表单为一系列的<p> 标签，每个<p> 标签包含一个字段；<p> 一个段落 -->
-    <input type="submit" value="Add" />
+    {% bootstrap_form form layout='inline' %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+        {% bootstrap_icon "star" %} Add
+    </button>
+    {% endbuttons %}
 </form>
+
 {% endblock %}
