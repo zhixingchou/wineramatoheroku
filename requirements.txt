@@ -1,7 +1,9 @@
 Django==1.8
 django-bootstrap3==9.1.0
+django-registration-redux==1.8
 gunicorn==19.7.1
 numpy==1.13.3
 pytz==2017.3
 requests==2.9.1
+virtualenv==15.1.0
 whitenoise==3.3.1
