@@ -1,3 +1,4 @@
+# coding: utf-8
 """
 Django settings for winerama project.
 
@@ -54,11 +55,12 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'winerama.urls'
+LOGIN_REDIRECT_URL = '/reviews/review/user'     # 告诉Django用户登录成功后如果contrib.auth.views.login视图（view）没有获取到next参数将会默认重定向到哪个URL
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 """winerama URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -19,4 +21,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^reviews/', include('reviews.urls', namespace="reviews")),
     url(r'^admin/', include(admin.site.urls)),
+    url('^accounts/', include('django.contrib.auth.urls', namespace="auth")),   # 将 auth 应用中的 urls 模块包含进来
 ]
