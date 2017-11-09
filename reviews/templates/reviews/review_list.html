@@ -6,19 +6,36 @@
 
 
 {% block content %}
-{% if latest_review_list %} <!-- 函数返回该变量 -->
-<div>
-    {% for review in latest_review_list %}  <!-- django 模板 for 循环 -->
-    <div>
-        <h4><a href="{% url 'reviews:review_detail' review.id %}"  >   <!-- url 使用url.py定义的name -->
-            {{ review.wine.name }}
+{#{% if latest_review_list %} <!-- 函数返回该变量 -->#}
+{#<div>#}
+{#    {% for review in latest_review_list %}  <!-- django 模板 for 循环 -->#}
+{#    <div>#}
+{#        <h4><a href="{% url 'reviews:review_detail' review.id %}"  >   <!-- url 使用url.py定义的name -->#}
+{#            {{ review.wine.name }}#}
+{#        </a></h4>#}
+{#        <h6>rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>#}
+{#        <p> {{ review.comment }}</p>#}
+{#    </div>#}
+{#    {% endfor %}#}
+{#</div>#}
+{#{% else %}      <!-- django if else endif 模板-->#}
+{#<p>No reviews are available.</p>#}
+{# {% endif %}#}
+
+{% if latest_review_list %}
+<div class="row">       <!-- Grid System Use rows to create horizontal groups of columns-->
+    {% for review in latest_review_list %}
+    <div class="col-xs-6 col-lg-4">     <!-- col-xs- 等宽的列；col-lg- 栅格类适用于与屏幕宽度大于或等于分界点大小的设备 ， 并且针对小屏幕设备覆盖栅格类 -->
+        <h4><a href="{% url 'reviews:review_detail' review.id %}">
+        {{ review.wine.name }}
         </a></h4>
         <h6>rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
-        <p> {{ review.comment }}</p>
+        <p>{{ review.comment }}</p>
     </div>
     {% endfor %}
 </div>
-{% else %}      <!-- django if else endif 模板-->
+{% else %}
 <p>No reviews are available.</p>
- {% endif %}
+{% endif %}
+
 {% endblock %}
