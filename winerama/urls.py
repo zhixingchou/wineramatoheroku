@@ -21,6 +21,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^reviews/', include('reviews.urls', namespace="reviews")),
     url(r'^admin/', include(admin.site.urls)),
-    url('^accounts/', include('registration.backends.default.urls')),   # 教程使用simple修改成default成功显示注册后的页面【安装django-registration-redux版本不同故障】
+    url('^accounts/', include('registration.backends.simple.urls')),   # 教程使用simple -- 1.3修改成default -- 1.8 成功显示注册后的页面【安装django-registration-redux版本不同故障】
     url('^accounts/', include('django.contrib.auth.urls', namespace="auth")),   # 将 auth 应用中的 urls 模块包含进来
 ]
